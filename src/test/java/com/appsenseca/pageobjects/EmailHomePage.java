@@ -2,6 +2,7 @@ package com.appsenseca.pageobjects;
 
 import com.appsenseca.util.WebUtil;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
@@ -10,9 +11,20 @@ import org.openqa.selenium.support.PageFactory;
  */
 public class EmailHomePage {
     public SignInPage signOut(WebDriver driver) {
-        WebUtil.click(driver, By.cssSelector("span[class='gb_da gbii']"));
+        try{
+            WebUtil.click(driver, By.cssSelector("span[class='gb_da gbii']"));
 
-        WebUtil.click(driver, By.id("gb_71"));
+            WebUtil.click(driver, By.id("gb_71"));
+        }catch (NoSuchElementException ne){
+            driver.get("https://mail.google.com/mail/?logout");
+        }
+
+        try {
+            driver.switchTo().alert().accept();
+        }catch (Exception e){
+
+        }
+
 
         WebUtil.waitForElementVisible(driver, By.id("signIn"));
 
