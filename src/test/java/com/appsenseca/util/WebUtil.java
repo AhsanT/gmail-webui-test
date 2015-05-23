@@ -43,4 +43,8 @@ public class WebUtil {
         WebElement subjectArea = driver.findElement(by);
         return subjectArea.getText();
     }
+
+    public static boolean isElementDisplayed(WebDriver driver, By by) {
+        return driver.findElement(by).isDisplayed();
+    }
 }

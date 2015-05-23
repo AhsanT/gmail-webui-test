@@ -20,6 +20,10 @@ public class SignInPage {
     }
 
     public void fillInPassword(WebDriver driver, String s) {
+        if(WebUtil.isElementDisplayed(driver, By.id("next"))){
+            WebUtil.click(driver, By.id("next"));
+        }
+        WebUtil.waitForElementVisible(driver, By.id("Passwd"));
         WebUtil.clearAndSendKeys(driver, By.id("Passwd"), s);
     }
 
