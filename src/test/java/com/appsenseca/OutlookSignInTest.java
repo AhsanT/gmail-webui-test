@@ -37,7 +37,7 @@ public class OutlookSignInTest {
         //1. Go to Gmail website
         OutlookSignInPage outlookSignInPage = WebUtil.goToOutlookSignInPage(driver);
 
-        //1.1
+        //1.1 seems you have to click Sign In button first to be able to send keys
         outlookSignInPage.clickSignIn(driver);
 
         //2. Fill in username --
@@ -52,6 +52,7 @@ public class OutlookSignInTest {
         OutlookEmailHomePage outlookEmailHomePage = outlookSignInPage.clickSignIn(driver);
 
         //5. wait for page to load
+        // TODO: change to your own verifications
         Thread.sleep(5000);
     }
 
