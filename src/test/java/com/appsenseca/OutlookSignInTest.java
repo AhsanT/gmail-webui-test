@@ -40,10 +40,12 @@ public class OutlookSignInTest {
         //1.1
         outlookSignInPage.clickSignIn(driver);
 
-        //2. Fill in username
+        //2. Fill in username --
+        // TODO: change to your own user name
         outlookSignInPage.fillInUsername(driver, "udemyken@outlook.com");
 
-        //3. Fill in password
+        //3. Fill in password --
+        // TODO: change to your own password
         outlookSignInPage.fillInPassword(driver, "Uken@123");
 
         //4. click sign in
