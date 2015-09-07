@@ -1,5 +1,6 @@
 package com.appsenseca.util;
 
+import com.appsenseca.pageobjects.OutlookSignInPage;
 import com.appsenseca.pageobjects.SignInPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -12,7 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  * Created by appken on 15-05-03.
  */
 public class WebUtil {
-    final static int WAIT_TIME_OUT=30;
+    final static int WAIT_TIME_OUT = 30;
 
     public static SignInPage goToSignInPage(WebDriver driver) {
         driver.get("http://gmail.com");
@@ -46,5 +47,10 @@ public class WebUtil {
 
     public static boolean isElementDisplayed(WebDriver driver, By by) {
         return driver.findElement(by).isDisplayed();
+    }
+
+    public static OutlookSignInPage goToOutlookSignInPage(WebDriver driver) {
+        driver.get("https://outlook.com");
+        return PageFactory.initElements(driver, OutlookSignInPage.class);
     }
 }
