@@ -2,9 +2,7 @@ package com.appsenseca.util;
 
 import com.appsenseca.pageobjects.OutlookSignInPage;
 import com.appsenseca.pageobjects.SignInPage;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -56,5 +54,18 @@ public class WebUtil {
     public static OutlookSignInPage goToOutlookSignInPage(WebDriver driver) {
         driver.get("https://outlook.com");
         return PageFactory.initElements(driver, OutlookSignInPage.class);
+    }
+
+    public static String tryDismissAlert(WebDriver driver) {
+        String alertText = "";
+        try {
+            Alert alert = driver.switchTo().alert();
+            alertText = alert.getText();
+            alert.dismiss();
+
+        } catch (NoAlertPresentException nape) {
+            // nothing to do, because we only want to close it when pop up
+        }
+        return alertText;
     }
 }

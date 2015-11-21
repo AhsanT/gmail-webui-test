@@ -61,7 +61,7 @@ public class EmailHomePage {
         WebUtil.click(driver, By.cssSelector("div[aria-label*='Send']"));
     }
 
-    public void clickInboxWithNewEmail(WebDriver driver, String folder) {
+    public void clickFolderByName(WebDriver driver, String folder) {
         WebUtil.waitForElementVisible(driver, By.partialLinkText(folder));
 
         WebUtil.click(driver, By.partialLinkText(folder));
@@ -71,15 +71,25 @@ public class EmailHomePage {
     public EmailViewPage clickNewEmailWithSubject(WebDriver driver, String subject) {
         WebUtil.waitForElementVisible(driver, By.cssSelector("div[class='y6'] span[id] b"));
 
+        boolean isEmailFound = false;
+        // get all the new emails
         List<WebElement> emails = driver.findElements(By.cssSelector("div[class='y6'] span[id] b"));
 
         for (WebElement email : emails) {
+            // if email found ,click it and stop loop
             if (email.getText().equals(subject)) {
                 WebUtil.click(driver, email);
+                isEmailFound = true;
+                break;
             }
         }
 
-//        /WebUtil.click(driver, By.cssSelector("div[class='y6'] span[id] b"));
+        // if email cannot be found, refresh the page and search again
+        if(!isEmailFound) {
+            driver.navigate().refresh();
+            WebUtil.tryDismissAlert(driver);
+            clickNewEmailWithSubject(driver, subject);
+        }
 
         return PageFactory.initElements(driver, EmailViewPage.class);
     }

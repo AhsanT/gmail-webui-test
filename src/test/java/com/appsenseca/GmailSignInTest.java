@@ -85,7 +85,7 @@ public class GmailSignInTest {
         emailHomePage.clickSendEmail(driver);
 
         // 7. Click Inbox again
-        emailHomePage.clickInboxWithNewEmail(driver, "Inbox");
+        emailHomePage.clickFolderByName(driver, "Inbox");
 
         // 8. Click email
         EmailViewPage emailViewPage = emailHomePage.clickNewEmailWithSubject(driver, subject);
