@@ -18,11 +18,11 @@ public class GmailSignInTest {
     WebDriver driver;
 
     @Before
-    public void setDriver(){
+    public void setDriver() {
         String browserName = System.getenv("browser");
-        if(browserName!= null && browserName.equalsIgnoreCase("Chrome")){
+        if (browserName != null && browserName.equalsIgnoreCase("Chrome")) {
             driver = new ChromeDriver();
-        }else{
+        } else {
             driver = new FirefoxDriver();
         }
     }
@@ -37,7 +37,7 @@ public class GmailSignInTest {
         signInPage.fillInUsername(driver, "udemyken@gmail.com");
 
         //3. Fill in password
-        signInPage.fillInPassword(driver, "udemyken123");
+        signInPage.fillInPassword(driver, "udemyken789");
 
         //4. click sign in
         EmailHomePage emailHomePage = signInPage.clickSignIn(driver);
@@ -61,7 +61,7 @@ public class GmailSignInTest {
         signInPage.fillInUsername(driver, "udemyken@gmail.com");
 
         //3. Fill in password
-        signInPage.fillInPassword(driver, "udemyken123");
+        signInPage.fillInPassword(driver, "udemyken789");
 
         //4. click sign in
         EmailHomePage emailHomePage = signInPage.clickSignIn(driver);
@@ -83,10 +83,10 @@ public class GmailSignInTest {
         emailHomePage.clickSendEmail(driver);
 
         // 7. Click Inbox again
-        emailHomePage.clickInboxWithNewEmail(driver, "Inbox (1)");
+        emailHomePage.clickInboxWithNewEmail(driver, "Inbox");
 
         // 8. Click email
-        EmailViewPage emailViewPage = emailHomePage.clickNewEmail(driver);
+        EmailViewPage emailViewPage = emailHomePage.clickNewEmailWithSubject(driver, subject);
 
         // 9. Verify the email subject and email body is correct
         String actualSubject = emailViewPage.getEmailSubjectText(driver);

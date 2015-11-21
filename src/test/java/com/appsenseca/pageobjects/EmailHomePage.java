@@ -4,24 +4,27 @@ import com.appsenseca.util.WebUtil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+
+import java.util.List;
 
 /**
  * Created by appken on 15-05-03.
  */
 public class EmailHomePage {
     public SignInPage signOut(WebDriver driver) {
-        try{
+        try {
             WebUtil.click(driver, By.cssSelector("span[class='gb_da gbii']"));
 
             WebUtil.click(driver, By.id("gb_71"));
-        }catch (NoSuchElementException ne){
+        } catch (NoSuchElementException ne) {
             driver.get("https://mail.google.com/mail/?logout");
         }
 
         try {
             driver.switchTo().alert().accept();
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
 
@@ -58,17 +61,25 @@ public class EmailHomePage {
         WebUtil.click(driver, By.cssSelector("div[aria-label*='Send']"));
     }
 
-    public void clickInboxWithNewEmail(WebDriver driver, String s) {
-        WebUtil.waitForElementVisible(driver, By.linkText("Inbox (1)"));
+    public void clickInboxWithNewEmail(WebDriver driver, String folder) {
+        WebUtil.waitForElementVisible(driver, By.partialLinkText(folder));
 
-        WebUtil.click(driver, By.linkText("Inbox (1)"));
+        WebUtil.click(driver, By.partialLinkText(folder));
     }
 
 
-    public EmailViewPage clickNewEmail(WebDriver driver) {
+    public EmailViewPage clickNewEmailWithSubject(WebDriver driver, String subject) {
         WebUtil.waitForElementVisible(driver, By.cssSelector("div[class='y6'] span[id] b"));
 
-        WebUtil.click(driver, By.cssSelector("div[class='y6'] span[id] b"));
+        List<WebElement> emails = driver.findElements(By.cssSelector("div[class='y6'] span[id] b"));
+
+        for (WebElement email : emails) {
+            if (email.getText().equals(subject)) {
+                WebUtil.click(driver, email);
+            }
+        }
+
+//        /WebUtil.click(driver, By.cssSelector("div[class='y6'] span[id] b"));
 
         return PageFactory.initElements(driver, EmailViewPage.class);
     }
