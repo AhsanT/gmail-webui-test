@@ -1,3 +1,5 @@
+package com.appsenseca;
+
 import com.appsenseca.categories.Critical;
 import com.appsenseca.categories.Major;
 import com.appsenseca.pageobjects.EmailHomePage;
