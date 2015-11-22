@@ -43,6 +43,7 @@ public class WebUtil {
     }
 
     public static String getElementText(WebDriver driver, By by) {
+        waitForElementVisible(driver, by);
         WebElement subjectArea = driver.findElement(by);
         return subjectArea.getText();
     }
