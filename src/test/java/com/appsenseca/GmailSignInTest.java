@@ -39,7 +39,7 @@ public class GmailSignInTest {
         signInPage.fillInUsername(driver, "udemyken@gmail.com");
 
         //3. Fill in password
-        signInPage.fillInPassword(driver, "udemyken789");
+        signInPage.fillInPassword(driver, "udemy12345");
 
         //4. click sign in
         EmailHomePage emailHomePage = signInPage.clickSignIn(driver);
@@ -63,7 +63,7 @@ public class GmailSignInTest {
         signInPage.fillInUsername(driver, "udemyken@gmail.com");
 
         //3. Fill in password
-        signInPage.fillInPassword(driver, "udemyken789");
+        signInPage.fillInPassword(driver, "udemy12345");
 
         //4. click sign in
         EmailHomePage emailHomePage = signInPage.clickSignIn(driver);
